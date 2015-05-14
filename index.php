@@ -10,6 +10,21 @@ define('clientSecret', '70d20d0e81714447a98791fb1d69bef8');
 define('redirectURI', 'http://localhost/Andrew/index.php');
 define('ImageDirectory', 'pics/');
 
+//Function that is going to connect to Instagram
+function connectToInstagram($url){
+	$ch = curl_init();
+
+	curl_setopt_array($ch, array(
+		CURLOPT_URL => $url;
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_SSL_VERIFYPEER => false,
+		CURLOPT_SSL_VERIFYHOST => 2,
+	));
+	$result = curl_exec($ch);
+	curl_close($ch);
+	retun $result;
+}
+
 if (isset($_GET['code'])){
 	$code = ($_GET['code']);
 	$url = 'https://api.instagram.com/ouath/access_token';
@@ -24,7 +39,7 @@ $curl = curl_init($url); //settings a cURL session and we put in $url because th
 curl_setopt($curl, CURLOPT_POST, true);
 curl_setopt($curl, CURLOPT_POSTFIELDS, $access_token_settings); //setting the POSTFIELDS to the array setup that we created.
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); //setting it equal to 1 because we are getting strings back.
-curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false); //but in live work-production we want to set this to true.
+curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //but in live work-production we want to set this to true.
 
 
 $result = curl_exec($curl);
