@@ -40,11 +40,21 @@ function printImages($userID)
 	$results = json_decode($instagramInfo, true);
 
 	//Parse through thet information one by one
-	foreach($results['data'] as $items)
-	 {
+	foreach($results['data'] as $items){
 	 	$image_url = $items['images']['low_resolution']['url']; //go through all of the results and give back the url of those pictures because we want to save it in the php server.
 	 	echo '<img src=" '. $image_url .' "/><br/>';
+	 	//calling a function to save that $image_url
+	 	savePictures($image_url);
 	 }
+}
+//Function to save image to server
+function savePictures($image_url){
+	echo $images_url .'<br>'; 
+	$filename = basename($image_url);//the filename is what we are storing. basename is the PHP built in method that we are using to store $image_url
+	echo $filename . '<br>';
+
+	$destination = ImageDirectory . $filename; //maiking sure that the image doesnt exist in the storage.
+	file_put_contents($destination, file_get_contents($image_url)); //goes and grabs an imagefile and stores it into our server.
 }
 
 
@@ -71,9 +81,7 @@ curl_close($curl);
 $results = json_decode($result, true);
 $userName = $results['user']['username'];
 
-
 $userID = getUserID($userName);
-
 
 printImages($userID);
 }
