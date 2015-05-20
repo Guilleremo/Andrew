@@ -1,0 +1,34 @@
+body{
+	font: normal 14px 'Open Sans', Arial, sans-serif; /*body font*/
+	background-image: url(../images/rsz_1howl.jpg);
+	color: #999; /*body color*/
+ 	background-repeat: none;
+ 	width:50%;
+ 	height:100%;
+}
+
+.wrap{/*styling for wrap*/
+		width: 400px; /*width is 400px*
+		margin: 0 auto;/*margin 0 auto*/
+	}
+
+	.task-list{/*styling for task list*/
+		background-image: url(../images/moon.jpg);
+		background-repeat: none;
+		width: 68%; /*68% width*/
+		min-height: 350px; /*minimum height is 300px*/
+		box-shadow: 2px 2px 0px #ddd; /*box shadow size*/
+		margin-top: 40px; /*margin from top of screen is 40px*/
+		padding: 22px 6%; /*padding is 22px and 6%*/
+	}
+
+	@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+  	body {
+  		font: normal 14px 'Open Sans', Arial, sans-serif; /*body font*/
+			background-image: url(../images/pack.jpg);
+			color: #999; /*body color*/
+ 			background-repeat: none;
+ 			width:100%;
+ 			height:100%;
+  }
+}
