@@ -33,8 +33,7 @@ function getUserID($userName){
 	return $results['data']['0']['id']; //echoing out userID.
 }
 //Function to print out image onto screen
-function printImages($userID)
-{
+function printImages($userID){
 	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id='.clientID . '&count=5';
 	$instagramInfo = connectToInstagram($url);
 	$results = json_decode($instagramInfo, true);
@@ -42,16 +41,22 @@ function printImages($userID)
 	//Parse through thet information one by one
 	foreach($results['data'] as $items){
 	 	$image_url = $items['images']['low_resolution']['url']; //go through all of the results and give back the url of those pictures because we want to save it in the php server.
-	 	echo '<img src=" '. $image_url .' "/><br/>';
+	 	echo '<img class="ig-pic" src=" '. $image_url .' "/><br/>';
 	 	//calling a function to save that $image_url
 	 	savePictures($image_url);
 	 }
 }
 //Function to save image to server
 function savePictures($image_url){
-	echo $images_url .'<br>'; 
+	//echo $image_url .'<br>'; 
+	echo '<head>
+			<link rel="stylesheet" href="css/main.css" 
+			</head>';
+
+			echo '<body id="body-class">';
+
 	$filename = basename($image_url);//the filename is what we are storing. basename is the PHP built in method that we are using to store $image_url
-	echo $filename . '<br>';
+	//echo $filename . '<br>';
 
 	$destination = ImageDirectory . $filename; //maiking sure that the image doesnt exist in the storage.
 	file_put_contents($destination, file_get_contents($image_url)); //goes and grabs an imagefile and stores it into our server.
@@ -103,8 +108,10 @@ else {
 	After getting approval we are now going to have the information so that we can play with it
 	-->
 	<title></title>
-		<a href="	https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">LOGIN</a>
-		<script type="js.main.js"></script>
+		<div class="login">
+			<a href="https://api.instagram.com/oauth/authorize/?client_id=<?php echo clientID; ?>&redirect_uri=<?php echo redirectURI; ?>&response_type=code">LOGIN</a>
+			<script type="js.main.js"></script>
+		</div>
 	</body>
 </html>
 <?php
