@@ -16,7 +16,7 @@ body{
 	@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
   	body {
   		font: normal 14px 'Open Sans', Arial, sans-serif; /*body font*/
-			background-image: url(../images/pack.jpg);
+			background-image: url(../images/city2.jpg);
 			color: #999; /*body color*/
  			background-repeat: none;
  			width:100%;

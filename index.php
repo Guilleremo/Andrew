@@ -37,14 +37,16 @@ function printImages($userID){
 	$url = 'https://api.instagram.com/v1/users/' . $userID . '/media/recent?client_id='.clientID . '&count=5';
 	$instagramInfo = connectToInstagram($url);
 	$results = json_decode($instagramInfo, true);
+	require_once(__DIR__ . "/view/header.php");
 
 	//Parse through thet information one by one
-	foreach($results['data'] as $items){
+	foreach ($results['data'] as $items){
 	 	$image_url = $items['images']['low_resolution']['url']; //go through all of the results and give back the url of those pictures because we want to save it in the php server.
 	 	echo '<img class="ig-pic" src=" '. $image_url .' "/><br/>';
 	 	//calling a function to save that $image_url
 	 	savePictures($image_url);
 	 }
+	 require_once(__DIR__ . "../view/footer.php");
 }
 //Function to save image to server
 function savePictures($image_url){
